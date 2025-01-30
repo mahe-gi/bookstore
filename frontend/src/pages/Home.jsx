@@ -43,6 +43,7 @@ axios.get('http://localhost:3000/api/books').then((res)=>{
             <tbody>
                 {
                     books.map((book,index)=>{
+                        return (
                         <tr key={book._id} className=' h-8'>
                             <td className=' border border-slate-700 rounded-md text-center '>{index+1}</td>
                             <td className=' border border-slate-700 rounded-md text-center '>{book.title}</td>
@@ -63,6 +64,7 @@ axios.get('http://localhost:3000/api/books').then((res)=>{
                             </td>
 
                         </tr>
+                        )
                     })
                 }
             </tbody>
