@@ -2,11 +2,13 @@ import express from "express";
 import { PORT,MONGODB_URL } from "./config.js";
 import mongoose from "mongoose";
 import bookRoutes from "./routes/bookRoutes.js"
-import cors from "cors"
+import cors from "cors";
 
 const app = express();
-app.use(cors());
 app.use(express.json());
+app.use(cors({
+    origin: 'http://localhost:5173'
+}));
 
 
 mongoose.connect(MONGODB_URL).then(()=>{
