@@ -1,8 +1,11 @@
 import express from "express";
-import { PORT, MONGODB_URL } from "./config.js";
 import mongoose from "mongoose";
 import bookRoutes from "./routes/bookRoutes.js";
 import cors from "cors";
+import dotenv from "dotenv";
+dotenv.config();
+
+
 
 const app = express();
 app.use(express.json());
@@ -12,8 +15,10 @@ app.use(
   })
 );
 
+console.log(process.env.MONGODB_URL);
+console.log(process.env.PORT);
 mongoose
-  .connect(MONGODB_URL)
+  .connect(process.env.MONGODB_URL)
   .then(() => {
     console.log("Connected to MongoDB");
     app.get("/", (_, res) => {
@@ -27,6 +32,6 @@ mongoose
     console.log("Error connecting to MongoDB", error.message);
   });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+app.listen(process.env.PORT, () => {
+  console.log(`Server is running on port ${process.env.PORT}`);
 });
